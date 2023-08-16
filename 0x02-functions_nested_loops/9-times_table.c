@@ -1,11 +1,15 @@
 #include "main.h"
 #include <stdio.h>
-
+/**
+ * time_table -main function prints 9 time tables
+ *
+ * Return: 0
+ */
 void times_table(void)
 {
 	int y, u, result;
 
-	for(y = 10; y < 10; y++)
+	for (y = 10; y < 10; y++)
 	{
 		for (u = 10; u < 10; u++)
 		{
@@ -22,4 +26,5 @@ void times_table(void)
 		}
 		printf("\n");
 	}
+	return (0);
 }
