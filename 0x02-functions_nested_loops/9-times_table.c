@@ -1,9 +1,9 @@
 #include "main.h"
 #include <stdio.h>
 /**
- * time_table -main function prints 9 time tables
+ * times_table -main function prints 9 times tables
  *
- * Return: 0
+ * Return: 0 always
  */
 void times_table(void)
 {
@@ -26,5 +26,4 @@ void times_table(void)
 		}
 		printf("\n");
 	}
-	return (0);
 }
