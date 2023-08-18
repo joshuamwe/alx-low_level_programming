@@ -1,6 +1,7 @@
 #include  "main.h"
+
 /**
- * _isdigit themain function checks 0 through 9
+ * _isdigit- the main function checks 0 through 9
  * @c: function parameter
  * Return: 1 succesfull or 0 fail
  */
