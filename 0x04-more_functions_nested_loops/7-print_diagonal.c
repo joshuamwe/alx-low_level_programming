@@ -2,8 +2,8 @@
 
 /**
  * print_diagonal - prints diagonal using the '\' character
- * @n: function parameter
- * Return: 0
+ * @n: number of time the '\' should be printed
+ * Return: void
  */
 
 void print_diagonal(int n)
@@ -21,6 +21,5 @@ void print_diagonal(int n)
 			_putchar('\\');
 			_putchar('\n');
 		}
-
 	}
 }
