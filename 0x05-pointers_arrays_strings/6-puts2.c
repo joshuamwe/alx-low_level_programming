@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <string.h>
  /**
-  * puts2 - printsevert character of astring
+  * puts2 - prints every character of a string
+  * @str: parameter function
   * Return: 0
   */
 void puts2(char *str)
