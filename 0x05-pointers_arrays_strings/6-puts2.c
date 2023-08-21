@@ -2,8 +2,7 @@
 #include <stdio.h>
 
 /**
- * puts2 - function that prints characters of a string
- *
+ * puts2 - prints every other character of the string
  * @str: string character to print
  * Return: 0
  */
@@ -11,11 +10,11 @@ void puts2(char *str)
 {
 	int i = 0;
 
-	while (str[i] != '\0')
+	for (i = 0 ; str[i] != '\0' ; i++)
 	{
-		putchar(str[i]);
-		i += 2;
+		if (i % 2 == 0)
+			_putchar(str[i]);
 	}
-	putchar('\n');
+	_putchar('\n');
 }
 
