@@ -11,17 +11,11 @@
 void print_chessboard(char (*a)[8])
 {
 	int i, j;
-	(void)a; /* Cast to void to indicate parameter is intentionally unused */
 
 	for (i = 0; i < 8; i++)
 	{
 		for (j = 0; j < 8; j++)
-		{
-			if ((i + j) % 2 == 0)
-				putchar(32); /* White square */
-			else
-				putchar(35); /* Black square */
-		}
-		putchar('\n');
+			_putchar(a[i][j]);
+		_putchar('\n');
 	}
 }
