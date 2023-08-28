@@ -25,17 +25,3 @@ void print_chessboard(char (*a)[8])
 		putchar('\n');
 	}
 }
-
-/**
- * main - check the code
- *
- * Return: Always 0.
- */
-int main(void)
-{
-	char chessboard[8][8];
-
-	print_chessboard(chessboard);
-
-	return (0);
-}
