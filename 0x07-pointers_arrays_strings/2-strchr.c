@@ -18,6 +18,8 @@ char *_strchr(char *s, char c)
 
 		s++;
 	}
+	if (*s == c)
+		return (s);
 
 	/* If c is not found, return NULL */
 	return (NULL);
