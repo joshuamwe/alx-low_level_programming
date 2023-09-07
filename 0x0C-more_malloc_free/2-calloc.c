@@ -3,7 +3,7 @@
 #include <stdlib.h>
 /**
  * _calloc - allocate memory fot another array
- * @nmemb;  parameter function 1
+ * @nmemb:  parameter function 1
  * @size: parameter function 2
  * Return: poinetr to newly allocated array
  */
