@@ -1,9 +1,8 @@
 #include "dog.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * new_dog - main function
+ * new_dog - new dog to be created
  * @name: name if the new dog
  * @age: age of new dog
  * @owner: owner of the new dog
