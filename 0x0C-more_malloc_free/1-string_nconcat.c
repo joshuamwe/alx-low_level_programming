@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * string_nconcat - main function
@@ -11,38 +12,25 @@
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int s1len = 0;
-	unsigned int i;
-	unsigned int s2len = 0;
-	char *output;
-
-	if (s1 == NULL)
-		s1 = "";
-	if (s2 == NULL)
-		s1 = "";
-	for (i = 0; s1[i] != '\0'; i++)
-		s1len++;
-	for (i = 0; s2[i] != '\0'; i++)
-		s2len++;
-
-	output = (char*)malloc(s1len + n + 1);
-	if (output == NULL)
-		return (NULL);
-	if (n >= s2len)
-	{
-		for (i = 0; s1[i] != '\0'; i++)
-			output[i] = s1[i];
-		for (i = 0; s2[i] != '\0'; i++)
-			output[s1len + 1] = s2[i];
-		output[s1len + 1] = '\0';
-	}
+	char *s;
+	unsigned int i = 0, j = 0, len1 = 0, len2 = 0;
+	
+	while (s1 && s1[len1])
+		len1++;
+	while (s2 && s2[len2])
+		len2++;
+	if (n < len2)
+		s = malloc(sizeof(char) * (len1 * n + 1));
 	else
+		s = malloc(sizeof(char) * (len2 * n + 1));
+
+	if (!s)
+		return (NULL);
+
+	while (i < len1)
 	{
-		for (i = 0; s1[i] != '\0'; i++)
-			output[i] = s1[i];
-		for (i = 0; i < n; i++)
-			output[s1len + i] = s2[i];
-		output[s1len + i] = '\0';
+		s[i] = s1[i];
+		i++;
 	}
-	return (output);
+	
 }
