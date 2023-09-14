@@ -1,5 +1,6 @@
 #include "3-calc.h"
 #include <stdlib.h>
+#include "stdef.h"
 /**
  * get_op_func - main function
  * @s: function parameter
@@ -8,6 +9,8 @@
 
 int (*get_op_func(char *s))(int, int)
 {
+	int i =0;
+
 	op_t ops[] = {
 		{"+", op_add},
 		{"-", op_sub},
@@ -17,8 +20,16 @@ int (*get_op_func(char *s))(int, int)
 		{NULL, NULL},
 	};
 
-	int i = 0;
 
-	while (op[i].op != NULL && *(ops[i].op) != *s)
+	while (op[i].op) 
+	{
+		if (*(ops[i].op) == *s && !(*(s + 1)))
+		{
+			return (ops[i].f);
+		}
 		i++;
-	return (ops[i].f);
+	}
+	return (NULL);
+}
+
+
