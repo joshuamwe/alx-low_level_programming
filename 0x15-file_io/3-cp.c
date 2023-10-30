@@ -1,52 +1,66 @@
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 /**
-  * main - copies the content of a file to another file.
-  * @argc: number of arguments stored in argv.
-  * @argv: the arguments.
-  *
-  * Return: Always Success.
-  */
+ * error_and_exit - Print an error message
+ * @code: The exit code
+ * @message: The error message forng
+ * @arg: Argument to be inserted g
+ */
+void error_and_exit(int code, const char *message, const char *arg)
+{
+	dprintf(2, message, arg);
+	exit(code);
+}
+/**
+ * main - Copyent of one file to another
+ * @argc: The number of coe arguments
+ * @argv: An array ofand-line arguments
+ * Return: 0 on success, or an erro
+ */
 int main(int argc, char *argv[])
 {
-	int filecreate, filewrite, fileclose, filewt, filerd;
-	char BUFFSIZE[1024];
+	 const char *file_from = argv[1];
+	 const char *file_to = argv[2];
+	 char buffer[1024];
+	 ssize_t bytes_read;
+	 ssize_t bytes_written = write(fd_to, buffer, bytes_read);
 
 	if (argc != 3)
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
-	filewrite = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
-
-	if (filewrite == -1)
-		dprintf(STDERR_FILENO, ERR, argv[2]), exit(99);
-	filecreate = open(argv[1], O_RDONLY);
-
-	if (filecreate == -1)
-		dprintf(STDERR_FILENO, ERROR, argv[1]), exit(98);
-
-	while (1)
 	{
-		filerd = read(filecreate, BUFFSIZE, 1024);
-		if (filerd == -1)
-			dprintf(STDERR_FILENO, ERROR, argv[1]), exit(98);
-		if (filerd > 0)
-		{
-			filewt = write(filewrite, BUFFSIZE, filerd);
-			if (filewt == -1)
-				dprintf(STDERR_FILENO, ERR, argv[2]), exit(99);
-		} else
-			break;
+		error_and_exit(97, "Usage: cp file_from file_to\n", "");
 	}
-	fileclose = close(filecreate);
-
-	if (fileclose == -1)
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", filecreate), exit(100);
-	fileclose = close(filewrite);
-
-	if (fileclose == -1)
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", filewrite), exit(100);
-
+	if (fd_from == -1)
+	{
+		error_and_exit(98, "Error: Can't read from file %s\n", file_from);
+	}
+	if (fd_to == -1)
+	{
+		error_and_exit(99, "Error: Can't write to file %s\n", file_to);
+	}
+	while ((bytes_read = read(fd_from, buffer, sizeof(buffer))) > 0)
+	{
+		if (bytes_written == -1)
+		{
+			error_and_exit(99, "Error: Can't write to file %s\n", file_to);
+		}
+	}
+	if (bytes_read == -1)
+	{
+		error_and_exit(98, "Error: Can't read from file %s\n", file_from);
+	}
+	if (close(fd_from) == -1)
+	{
+		error_and_exit(100, "Error: Can't close fd %d\n", fd_from);
+	}
+	if (close(fd_to) == -1)
+	{
+		error_and_exit(100, "Error: Can't close fd %d\n", fd_to);
+	}
 	return (0);
 }
+
+
